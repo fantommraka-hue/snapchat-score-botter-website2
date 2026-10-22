@@ -1,0 +1,34 @@
+name: chatgpt-desktop-linux
+base: core24
+version: '1.0.2'
+summary: Unofficial ChatGPT Desktop Client
+description: |
+  A simple and efficient desktop client for ChatGPT, using Electron to provide a seamless experience on Linux.
+
+grade: stable
+confinement: strict
+
+apps:
+  chatgpt-desktop-linux:
+    command: chatgpt-desktop-linux
+    extensions: [gnome-3-38]
+    plugs:
+      - network
+      - network-bind
+      - desktop
+      - desktop-legacy
+      - wayland
+      - x11
+      - opengl
+
+parts:
+  chatgpt-desktop-linux:
+    plugin: dump
+    source: .
+    stage-packages:
+      - libnss3
+      - libxss1
+      - libgtk-3-0
+      - libdrm2
+    after:
+      - desktop-gtk3
